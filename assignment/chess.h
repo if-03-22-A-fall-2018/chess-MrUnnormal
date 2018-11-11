@@ -12,27 +12,27 @@
  */
 #include "stdbool.h"
 
-enum PieceType  {King, Queen, Bishop, Knight, Rook, Pawn, NoPiece}
-enum PieceColor {Black, With}
-enum MoveType   {NormalMove, CaptureMove}
+enum PieceType  {Pawn, Rook, Knight, Bishop, Queen, King, NoPiece };
+enum PieceColor {Black, White};
+enum MoveType   {NormalMove, CaptureMove};
 
 struct ChessPiece {
-  enum PieceType pieceType;
   enum PieceColor color;
+  enum PieceType pieceType;
 };
 
 struct ChessSquare {
-  bool is_occupied;
   struct ChessPiece piece;
+  bool is_occupied;
 };
 
-typedef struct ChessSquare 	ChessBoard [8][8]
-typedef char 	File
-typedef int 	Rank
+typedef struct ChessSquare ChessBoard[8][8];
+typedef char File;
+typedef int Rank;
 
 bool 	is_piece (struct ChessPiece pc, enum PieceColor color, enum PieceType type);
 void 	init_chess_board (ChessBoard chess_board);
-struct ChessSquare * 	get_square (ChessBoard chess_board, File file, Rank rank);
+struct ChessSquare* get_square (ChessBoard chess_board, File file, Rank rank);
 bool 	is_square_occupied (ChessBoard chess_board, File file, Rank rank);
 bool 	add_piece (ChessBoard chess_board, File file, Rank rank, struct ChessPiece piece);
 struct ChessPiece 	get_piece (ChessBoard chess_board, File file, Rank rank);
