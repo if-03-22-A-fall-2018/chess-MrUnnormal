@@ -14,9 +14,9 @@
  #define ___CHESS_H
 #include "stdbool.h"
 
-enum PieceType  {Pawn, Rook, Knight, Bishop, Queen, King, NoPiece };
-enum PieceColor {Black, White};
-enum MoveType   {NormalMove, CaptureMove};
+enum PieceType  { Pawn, Rook, Knight, Bishop, Queen, King, NoPiece };
+enum PieceColor { Black, White};
+enum MoveType   { NormalMove, CaptureMove};
 
 struct ChessPiece {
   enum PieceColor color;
