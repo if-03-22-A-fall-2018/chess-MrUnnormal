@@ -17,15 +17,21 @@
  }
  void 	init_chess_board (ChessBoard chess_board)
  {
-
+   for(int i = 0; i < 8; i++)
+   {
+     for(int j = 0; j < 8; j++)
+     {
+       chess_board[i][j].is_occupied = false;
+     }
+   }
  }
  struct ChessSquare* get_square (ChessBoard chess_board, File file, Rank rank)
  {
-   return 0;
+   return &chess_board[file - 'a'][rank - 1];
  }
  bool 	is_square_occupied (ChessBoard chess_board, File file, Rank rank)
  {
-   return false;
+   return chess_board[file - 'a'][rank - 1].is_occupied;
  }
 
  bool 	add_piece (ChessBoard chess_board, File file, Rank rank, struct ChessPiece piece)
@@ -44,7 +50,15 @@
  }
  bool 	remove_piece (ChessBoard chess_board, File file, Rank rank)
  {
-   return false;
+   if(is_square_occupied(chess_board, file, rank))
+   {
+     chess_board[file - 'a'][rank - 1].is_occupied = false;
+     chess_board[file - 'a'][rank - 1].pice = NoPiece;
+   }
+   else
+   {
+     return false;
+   }
  }
 
  bool 	squares_share_file (File s1_f, Rank s1_r, File s2_f, Rank s2_r)
