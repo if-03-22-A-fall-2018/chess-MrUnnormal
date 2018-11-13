@@ -1,10 +1,10 @@
 /*----------------------------------------------------------
- *				HTBLA-Leonding / Klasse: 2AHDV
+ *				HTBLA-Leonding / Klasse: 2AHIF
  * ---------------------------------------------------------
  * Exercise Number: 0
  * Title:			chess.c
- * Author:			P. Bauer
- * Due Date:		November 03, 2010
+ * Author:			Jan Kaufmann
+ * Due Date:		November 13, 2018
  * ----------------------------------------------------------
  * Description:
  * Implementation of basic chess functions.
@@ -31,7 +31,7 @@ bool 	is_square_ok (File file, Rank rank)
  }
  struct ChessSquare* get_square (ChessBoard chess_board, File file, Rank rank)
  {
-   if(file <= 'h' && rank <= 8)
+   if(is_square_ok(file,rank))
    {
      return &chess_board[rank - 1][file - 'a'];
    }
@@ -39,7 +39,6 @@ bool 	is_square_ok (File file, Rank rank)
    {
       return 0;
    }
-
  }
  bool 	is_square_occupied (ChessBoard chess_board, File file, Rank rank)
  {
@@ -112,7 +111,6 @@ bool 	is_square_ok (File file, Rank rank)
    add_piece(chess_board, 'f', 8, black_bishop);
    add_piece(chess_board, 'd', 8, black_queen);
    add_piece(chess_board, 'e', 8, black_king);
-
  }
  bool 	remove_piece (ChessBoard chess_board, File file, Rank rank)
  {
