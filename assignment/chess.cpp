@@ -27,19 +27,27 @@
  }
  struct ChessSquare* get_square (ChessBoard chess_board, File file, Rank rank)
  {
-   return &chess_board[file - 'a'][rank - 1];
+   if(file <= 'h' && rank <= 8)
+   {
+     return &chess_board[rank - 1][file - 'a'];
+   }
+   else
+   {
+      return 0;
+   }
+
  }
  bool 	is_square_occupied (ChessBoard chess_board, File file, Rank rank)
  {
-   return chess_board[file - 'a'][rank - 1].is_occupied;
+   return chess_board[rank - 1][file - 'a'].is_occupied;
  }
 
  bool 	add_piece (ChessBoard chess_board, File file, Rank rank, struct ChessPiece piece)
  {
    if(!is_square_occupied(chess_board, file, rank))
    {
-     chess_board[file - 'a'][rank - 1].is_occupied = true;
-     chess_board[file - 'a'][rank - 1].piece = piece;
+     chess_board[rank - 1][file - 'a'].is_occupied = true;
+     chess_board[rank - 1][file - 'a'].piece = piece;
      return true;
    }
    else
@@ -50,7 +58,7 @@
 
  struct ChessPiece 	get_piece (ChessBoard chess_board, File file, Rank rank)
  {
-   return chess_board[file][rank].piece;
+   return chess_board[rank - 1][file - 'a'].piece;
  }
  void 	setup_chess_board (ChessBoard chess_board)
  {
@@ -60,8 +68,8 @@
  {
    if(is_square_occupied(chess_board, file, rank))
    {
-     chess_board[file - 'a'][rank - 1].is_occupied = false;
-     chess_board[file - 'a'][rank - 1].piece.type = NoPiece;
+     chess_board[rank - 1][file - 'a'].is_occupied = false;
+     chess_board[rank - 1][file - 'a'].piece.type = NoPiece;
      return true;
    }
    else
